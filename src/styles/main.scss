@@ -162,3 +162,52 @@ body {
     font-size: 0.875rem;
   }
 }
+
+
+.app-theme-root {
+  background: var(--bg, #f9fafb);
+  color: var(--fg, #1f2937);
+  min-height: 100svh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.app-theme-root[data-theme="dark"] {
+  --bg: #0b1020;
+  --surface: #101528;
+  --fg: #e7eaf3;
+  --fg-muted: #b7bfd3;
+  --border: #232a3b;
+  --brand: #7fb3ff;
+  --brand-600: #6aa2f0;
+  --brand-100: #17233b;
+  --brand-meta: color-mix(in srgb, var(--surface) 92%, #fff 8%);
+
+  background-color: var(--bg);
+  color: var(--fg);
+
+  .header {
+    background: var(--surface);
+    border-color: var(--border);
+    .nav_link { color: var(--fg-muted); }
+  }
+
+  .sidenav .sidebar {
+    background: #0f172a;
+    &__title { color: var(--fg); }
+    a { color: var(--fg-muted); }
+  }
+
+  .footer {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--fg-muted);
+  }
+
+  .card {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--fg);
+    &_excerpt { color: var(--fg-muted); }
+    &_meta { border-color: var(--border); color: var(--fg-muted); }
+  }
+}
