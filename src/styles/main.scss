@@ -211,3 +211,67 @@ body {
     &_meta { border-color: var(--border); color: var(--fg-muted); }
   }
 }
+
+/* Стилі для контактної форми */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 480px;
+  margin-top: 1rem;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  &__label {
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    color: #0f172a;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      border-color: #0f3d68;
+      box-shadow: 0 0 0 2px rgba(15, 61, 104, 0.15);
+    }
+  }
+
+  &__textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+
+  &__button {
+    align-self: flex-start;
+    padding: 0.6rem 1.25rem;
+    background-color: #083b66;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s, opacity 0.2s;
+
+    &:hover:not(:disabled) {
+      background-color: #0b4f88;
+    }
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+  }
+}

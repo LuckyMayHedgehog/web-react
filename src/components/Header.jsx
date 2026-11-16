@@ -20,7 +20,7 @@ export default function Header({ onNavigate }) {
         <a className="nav_link" href="#" onClick={(e) => go(e, 'about')}>
           Про нас
         </a>
-        <a className="nav_link nav_link-cta" href="#" onClick={(e) => e.preventDefault()}>
+        <a className="nav__link" href="#" onClick={(e) => go(e, 'contacts')}>
           Контакти
         </a>
         <div style={{ marginLeft: 'auto', display: 'flex' }}>
