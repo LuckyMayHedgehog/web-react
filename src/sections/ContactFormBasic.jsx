@@ -73,13 +73,13 @@ export default function ContactFormBasic() {
       </div>
 
       <button className="contact-form__button" disabled={status === "loading"}>
-        Надіслати (FormData)
+        Надіслати
       </button>
 
       {status === "loading" && <small className="text-blue-400">Надсилання...</small>}
       {status === "error" && <small className="text-red-600">Помилка: {error}</small>}
       {status === "success" && (
-        <small className="text-green-600">Відправлено! Перевір відповідь у консолі.</small>
+        <small className="text-green-600">Відправлено!</small>
       )}
     </form>
   );
