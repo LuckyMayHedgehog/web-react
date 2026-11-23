@@ -1,6 +1,8 @@
+import { useNavigateCountdown } from "../hooks/useNavigateCountdown.js";
 import { useState } from "react";
 
 export default function ContactFormBasic() {
+  const { secondsLeft, startCountdown } = useNavigateCountdown();
   const [status, setStatus] = useState("idle"); // 'idle' 'loading' 'success' 'error'
   const [error, setError] = useState("");
   
@@ -11,8 +13,8 @@ export default function ContactFormBasic() {
     e.preventDefault(); // Зупиняємо стандартне перезавантаження сторінки браузером
     setStatus("loading"); // Переводимо форму в режим завантаження (це заблокує кнопку та покаже напис "Надсилання...")
 
-    setError(""); //очищаємо текст попередньої помилки, якщо вона була
-    const form = e.target; // Отримуємо DOM-елемент форми, called submit, щоб передати його в FormData
+    setError(""); // очищаємо текст попередньої помилки, якщо вона була
+    const form = e.target; // Отримуємо DOM-елемент форми, щоб передати його в FormData
     const fd = new FormData(form); // Збираємо всі поля форми за їхніми атрибутами name
 
     try {
@@ -30,6 +32,13 @@ export default function ContactFormBasic() {
       console.log("Відповідь сервера (FormData):", json);
       setStatus("success");
       form.reset(); // Нативне очищення полів форми
+
+      // Запускаємо 5-секундний відлік та перехід на головну зі станом
+      startCountdown(5, "/", {
+        replace: true,
+        state: { from: "contact-success" },
+      });
+      
     } catch (e) {
       setError(e.message || "Network error");
       setStatus("error");
@@ -79,7 +88,9 @@ export default function ContactFormBasic() {
       {status === "loading" && <small className="text-blue-400">Надсилання...</small>}
       {status === "error" && <small className="text-red-600">Помилка: {error}</small>}
       {status === "success" && (
-        <small className="text-green-600">Відправлено!</small>
+        <small className="text-green-600">
+          Відправлено! Перенаправлення на головну через {secondsLeft} с...
+        </small>
       )}
     </form>
   );
